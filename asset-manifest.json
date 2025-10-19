@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/FixIT/static/css/main.b040fd08.css",
-    "main.js": "/FixIT/static/js/main.f88baafc.js",
+    "main.css": "/FixIT/static/css/main.aae2a11a.css",
+    "main.js": "/FixIT/static/js/main.ffdf3b7b.js",
     "static/js/453.b4bf9d61.chunk.js": "/FixIT/static/js/453.b4bf9d61.chunk.js",
     "index.html": "/FixIT/index.html",
-    "main.b040fd08.css.map": "/FixIT/static/css/main.b040fd08.css.map",
-    "main.f88baafc.js.map": "/FixIT/static/js/main.f88baafc.js.map",
+    "main.aae2a11a.css.map": "/FixIT/static/css/main.aae2a11a.css.map",
+    "main.ffdf3b7b.js.map": "/FixIT/static/js/main.ffdf3b7b.js.map",
     "453.b4bf9d61.chunk.js.map": "/FixIT/static/js/453.b4bf9d61.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b040fd08.css",
-    "static/js/main.f88baafc.js"
+    "static/css/main.aae2a11a.css",
+    "static/js/main.ffdf3b7b.js"
   ]
 }
