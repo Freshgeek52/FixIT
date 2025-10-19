@@ -77,8 +77,8 @@ export default function CampusSupportSystem() {
   };
 
   // Landing Page
-  const LandingPage = () => (
-    <div className={`min-h-screen ${bgClass} overflow-hidden relative`}>
+const LandingPage = () => (
+    <div className={`min-h-screen ${bgClass} overflow-hidden relative flex flex-col`}>
       {/* Header */}
       <header className={`relative z-50 ${darkMode ? 'bg-slate-900/80' : 'bg-white/40'} backdrop-blur-lg border-b sticky top-0`} style={{borderColor: colors.gray + '40'}}>
         <div className="max-w-7xl mx-auto px-4 py-5 flex justify-between items-center">
@@ -132,89 +132,102 @@ export default function CampusSupportSystem() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 py-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <div>
-              <span className="text-sm font-bold px-4 py-2 rounded-full" style={{backgroundColor: colors.gold + '20', color: colors.darkGray}}>
-                ⚡ Campus Maintenance Made Simple
-              </span>
-            </div>
-            <h1 className="text-6xl md:text-7xl font-black leading-tight">
-              {/* FixIT <br/> */}
-              <span style={{color: colors.cmuRed}}>Campus Support</span>
-            </h1>
-            <p className={`text-xl max-w-2xl ${darkMode ? 'text-slate-300' : 'text-gray-600'}`}>
-              Report issues in seconds. Track progress in real-time. Keep your campus operations running seamlessly and efficiently.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button 
-                onClick={() => {
-                  if (requiresLogin('report-issue')) setCurrentPage('report-issue');
-                }}
-                className="text-white px-8 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-2xl transform hover:scale-105 active:scale-95"
-                style={{backgroundColor: colors.cmuRed}}
-              >
-                Report an Issue
-                <ChevronRight className="inline ml-2" size={22} />
-              </button>
-              <button 
-                onClick={() => {
-                  if (requiresLogin('track-requests')) setCurrentPage('track-requests');
-                }}
-                className={`px-8 py-4 rounded-xl font-bold text-lg transition-all border-2`}
-                style={{borderColor: colors.cmuRed, color: colors.cmuRed, backgroundColor: darkMode ? 'transparent' : 'white'}}
-              >
-                Track Requests
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Quick Links */}
-        <div className="mt-20">
-          <h2 className="text-2xl font-bold mb-6">Quick Report</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              { icon: '🖥️', issue: 'Projector Issue', color: colors.blue },
-              { icon: '⚡', issue: 'Power Problem', color: colors.cmuRed },
-              { icon: '📡', issue: 'WiFi Down', color: colors.teal },
-              { icon: '🪑', issue: 'Equipment Broken', color: colors.darkGray }
-            ].map((q) => (
-              <button
-                key={q.issue}
-                onClick={() => {
-                  if (requiresLogin('report-issue')) setCurrentPage('report-issue');
-                }}
-                className="p-4 rounded-xl text-white font-semibold transition-all transform hover:scale-105 hover:shadow-lg active:scale-95"
-                style={{backgroundColor: q.color}}
-              >
-                <span className="text-2xl block mb-2">{q.icon}</span>
-                <span className="text-sm">{q.issue}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-         {/* Stats Cards */}
-          <div className="space-y-4 mt-20">
-            {[
-              { stat: '4,200+', label: 'Issues Resolved' },
-              { stat: '98%', label: 'Satisfaction Rate' },
-              { stat: '24/7', label: 'Support Available' }
-            ].map((item, i) => (
-              <div key={i} className={`p-6 rounded-xl ${cardClass} transform hover:scale-105 transition-all`}>
-                <div>
-                  <div className="text-2xl font-black" style={{color: colors.cmuRed}}>{item.stat}</div>
-                  <div className={`text-sm ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>{item.label}</div>
-                </div>
+      {/* Main Content */}
+      <div className="flex-1">
+        {/* Hero Section */}
+        <section className="relative z-10 max-w-7xl mx-auto px-4 py-24">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div>
+                <span className="text-sm font-bold px-4 py-2 rounded-full" style={{backgroundColor: colors.gold + '20', color: colors.darkGray}}>
+                  ⚡ Campus Maintenance Made Simple
+                </span>
               </div>
-            ))}
+              <h1 className="text-6xl md:text-7xl font-black leading-tight">
+                {/* FixIT <br/> */}
+                <span style={{color: colors.cmuRed}}>Campus Support</span>
+              </h1>
+              <p className={`text-xl max-w-2xl ${darkMode ? 'text-slate-300' : 'text-gray-600'}`}>
+                Report issues in seconds. Track progress in real-time. Keep your campus operations running seamlessly and efficiently.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button 
+                  onClick={() => {
+                    if (requiresLogin('report-issue')) setCurrentPage('report-issue');
+                  }}
+                  className="text-white px-8 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-2xl transform hover:scale-105 active:scale-95"
+                  style={{backgroundColor: colors.cmuRed}}
+                >
+                  Report an Issue
+                  <ChevronRight className="inline ml-2" size={22} />
+                </button>
+                <button 
+                  onClick={() => {
+                    if (requiresLogin('track-requests')) setCurrentPage('track-requests');
+                  }}
+                  className={`px-8 py-4 rounded-xl font-bold text-lg transition-all border-2`}
+                  style={{borderColor: colors.cmuRed, color: colors.cmuRed, backgroundColor: darkMode ? 'transparent' : 'white'}}
+                >
+                  Track Requests
+                </button>
+              </div>
+            </div>
+
+            
           </div>
-      </section>
+
+          {/* Quick Links */}
+          <div className="mt-20">
+            <h2 className="text-2xl font-bold mb-6">Quick Report</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                { icon: '🖥️', issue: 'Projector Issue', color: colors.blue },
+                { icon: '⚡', issue: 'Power Problem', color: colors.cmuRed },
+                { icon: '📡', issue: 'WiFi Down', color: colors.teal },
+                { icon: '🪑', issue: 'Equipment Broken', color: colors.darkGray }
+              ].map((q) => (
+                <button
+                  key={q.issue}
+                  onClick={() => {
+                    if (requiresLogin('report-issue')) setCurrentPage('report-issue');
+                  }}
+                  className="p-4 rounded-xl text-white font-semibold transition-all transform hover:scale-105 hover:shadow-lg active:scale-95"
+                  style={{backgroundColor: q.color}}
+                >
+                  <span className="text-2xl block mb-2">{q.icon}</span>
+                  <span className="text-sm">{q.issue}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+           {/* Stats Cards */}
+            <div className="space-y-4 mt-20">
+              {[
+                { stat: '4,200+', label: 'Issues Resolved' },
+                { stat: '98%', label: 'Satisfaction Rate' },
+                { stat: '24/7', label: 'Support Available' }
+              ].map((item, i) => (
+                <div key={i} className={`p-6 rounded-xl ${cardClass} transform hover:scale-105 transition-all`}>
+                  <div>
+                    <div className="text-2xl font-black" style={{color: colors.cmuRed}}>{item.stat}</div>
+                    <div className={`text-sm ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>{item.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+        </section>
+      </div>
+
+      {/* Footer */}
+      <footer className={`relative z-10 ${darkMode ? 'bg-slate-900/80' : 'bg-white/40'} backdrop-blur-lg border-t mt-12`} style={{borderColor: colors.gray + '40'}}>
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className={`text-center text-sm ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+            <p>&copy; {new Date().getFullYear()} FixIT Support Hub. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 
@@ -256,18 +269,18 @@ export default function CampusSupportSystem() {
         <div className="space-y-4">
           <input 
             type="email" 
-            placeholder="your.email@cmu.edu" 
+            placeholder="andrewID@andrew.cmu.edu" 
             value={userEmail}
             onChange={(e) => setUserEmail(e.target.value)}
             className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 transition-all ${inputClass}`}
           />
           <button
             onClick={() => { 
-              if (userEmail && userEmail.includes('@cmu.edu')) {
+              if (userEmail && userEmail.includes('@andrew.cmu.edu')) {
                 setIsLoggedIn(true);
                 setCurrentPage('landing');
               } else {
-                alert('Please enter a valid CMU email address');
+                alert('Please enter a valid email address');
               }
             }}
             className="w-full p-3 rounded-lg font-bold transition-all text-white hover:shadow-lg"
