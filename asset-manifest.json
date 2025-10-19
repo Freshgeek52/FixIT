@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/campus-support/FixIT/static/css/main.8a586e76.css",
-    "main.js": "/campus-support/FixIT/static/js/main.0241912b.js",
-    "static/js/453.483a1ec1.chunk.js": "/campus-support/FixIT/static/js/453.483a1ec1.chunk.js",
-    "index.html": "/campus-support/FixIT/index.html",
-    "main.8a586e76.css.map": "/campus-support/FixIT/static/css/main.8a586e76.css.map",
-    "main.0241912b.js.map": "/campus-support/FixIT/static/js/main.0241912b.js.map",
-    "453.483a1ec1.chunk.js.map": "/campus-support/FixIT/static/js/453.483a1ec1.chunk.js.map"
+    "main.css": "/FixIT/static/css/main.8a586e76.css",
+    "main.js": "/FixIT/static/js/main.63ca6070.js",
+    "static/js/453.483a1ec1.chunk.js": "/FixIT/static/js/453.483a1ec1.chunk.js",
+    "index.html": "/FixIT/index.html",
+    "main.8a586e76.css.map": "/FixIT/static/css/main.8a586e76.css.map",
+    "main.63ca6070.js.map": "/FixIT/static/js/main.63ca6070.js.map",
+    "453.483a1ec1.chunk.js.map": "/FixIT/static/js/453.483a1ec1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8a586e76.css",
-    "static/js/main.0241912b.js"
+    "static/js/main.63ca6070.js"
   ]
 }
