@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ChevronRight, AlertCircle, Clock, MapPin, Upload, Menu, X, Home, FileText, BarChart3, LogOut, Bell, Search, Filter, CheckCircle, Zap, LogIn, User, Edit3 } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
+
+
 export default function CampusSupportSystem() {
   const [currentPage, setCurrentPage] = useState('landing');
   const [darkMode, setDarkMode] = useState(false);
@@ -77,7 +79,10 @@ export default function CampusSupportSystem() {
   };
 
   // Landing Page
-const LandingPage = () => (
+const LandingPage = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
     <div className={`min-h-screen ${bgClass} overflow-hidden relative flex flex-col`}>
       {/* Header */}
       <header className={`relative z-50 ${darkMode ? 'bg-slate-900/80' : 'bg-white/40'} backdrop-blur-lg border-b sticky top-0`} style={{borderColor: colors.gray + '40'}}>
@@ -95,41 +100,94 @@ const LandingPage = () => (
             <button onClick={() => setDarkMode(!darkMode)} className={`p-2.5 rounded-lg transition-all ${darkMode ? 'bg-slate-700/50 hover:bg-slate-600/50' : 'bg-white/50 hover:bg-white/80'}`}>
               {darkMode ? '🌞' : '🌙'}
             </button>
-            {isLoggedIn ? (
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{backgroundColor: colors.cmuRed + '20'}}>
-                  <User size={18} style={{color: colors.cmuRed}} />
-                  <span className="text-sm font-semibold">{userEmail.split('@')[0]}</span>
-                </div>
-                <button 
-                  onClick={() => { setIsLoggedIn(false); setUserEmail(''); setCurrentPage('landing'); }}
-                  className="px-5 py-2.5 rounded-lg font-semibold transition-all hover:shadow-lg border-2"
-                  style={{borderColor: colors.cmuRed, color: colors.cmuRed}}
-                >
-                  Logout
-                </button>
-              </div>
-            ) : (
-              <>
-                <button 
-                  onClick={() => setCurrentPage('login')}
-                  className="px-5 py-2.5 text-white rounded-lg font-semibold transition-all hover:shadow-lg flex items-center gap-2"
-                  style={{backgroundColor: colors.cmuRed}}
-                >
-                  <LogIn size={18} />
-                  Login
-                </button>
-                <button 
-                  onClick={() => { setCurrentPage('staff-login'); }}
-                  className="px-5 py-2.5 rounded-lg font-semibold transition-all hover:shadow-lg border-2"
-                  style={{borderColor: colors.cmuRed, color: colors.cmuRed}}
-                >
-                  Staff
-                </button>
-              </>
-            )}
+            
+            {/* Desktop View */}
+            <div className="hidden sm:flex items-center gap-4">
+              {isLoggedIn ? (
+                <>
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{backgroundColor: colors.cmuRed + '20'}}>
+                    <User size={18} style={{color: colors.cmuRed}} />
+                    <span className="text-sm font-semibold">{userEmail.split('@')[0]}</span>
+                  </div>
+                  <button 
+                    onClick={() => { setIsLoggedIn(false); setUserEmail(''); setCurrentPage('landing'); }}
+                    className="px-5 py-2.5 rounded-lg font-semibold transition-all hover:shadow-lg border-2"
+                    style={{borderColor: colors.cmuRed, color: colors.cmuRed}}
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button 
+                    onClick={() => setCurrentPage('login')}
+                    className="px-5 py-2.5 text-white rounded-lg font-semibold transition-all hover:shadow-lg flex items-center gap-2"
+                    style={{backgroundColor: colors.cmuRed}}
+                  >
+                    <LogIn size={18} />
+                    Login
+                  </button>
+                  <button 
+                    onClick={() => { setCurrentPage('staff-login'); }}
+                    className="px-5 py-2.5 rounded-lg font-semibold transition-all hover:shadow-lg border-2"
+                    style={{borderColor: colors.cmuRed, color: colors.cmuRed}}
+                  >
+                    Staff
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setMenuOpen(!menuOpen)}
+              className={`sm:hidden p-2.5 rounded-lg transition-all ${darkMode ? 'bg-slate-700/50 hover:bg-slate-600/50' : 'bg-white/50 hover:bg-white/80'}`}
+            >
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className={`absolute top-full left-0 right-0 ${darkMode ? 'bg-slate-900/95' : 'bg-white/95'} backdrop-blur-lg border-b sm:hidden`} style={{borderColor: colors.gray + '40'}}>
+            <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3">
+              {isLoggedIn ? (
+                <>
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{backgroundColor: colors.cmuRed + '20'}}>
+                    <User size={18} style={{color: colors.cmuRed}} />
+                    <span className="text-sm font-semibold">{userEmail.split('@')[0]}</span>
+                  </div>
+                  <button 
+                    onClick={() => { setIsLoggedIn(false); setUserEmail(''); setCurrentPage('landing'); setMenuOpen(false); }}
+                    className="w-full px-5 py-2.5 rounded-lg font-semibold transition-all hover:shadow-lg border-2"
+                    style={{borderColor: colors.cmuRed, color: colors.cmuRed}}
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button 
+                    onClick={() => { setCurrentPage('login'); setMenuOpen(false); }}
+                    className="w-full px-5 py-2.5 text-white rounded-lg font-semibold transition-all hover:shadow-lg flex items-center justify-center gap-2"
+                    style={{backgroundColor: colors.cmuRed}}
+                  >
+                    <LogIn size={18} />
+                    Login
+                  </button>
+                  <button 
+                    onClick={() => { setCurrentPage('staff-login'); setMenuOpen(false); }}
+                    className="w-full px-5 py-2.5 rounded-lg font-semibold transition-all hover:shadow-lg border-2"
+                    style={{borderColor: colors.cmuRed, color: colors.cmuRed}}
+                  >
+                    Staff
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Main Content */}
@@ -144,7 +202,6 @@ const LandingPage = () => (
                 </span>
               </div>
               <h1 className="text-6xl md:text-7xl font-black leading-tight">
-                {/* FixIT <br/> */}
                 <span style={{color: colors.cmuRed}}>Campus Support</span>
               </h1>
               <p className={`text-xl max-w-2xl ${darkMode ? 'text-slate-300' : 'text-gray-600'}`}>
@@ -174,7 +231,7 @@ const LandingPage = () => (
               </div>
             </div>
 
-            
+           
           </div>
 
           {/* Quick Links */}
@@ -202,21 +259,21 @@ const LandingPage = () => (
             </div>
           </div>
 
-           {/* Stats Cards */}
-            <div className="space-y-4 mt-20">
-              {[
-                { stat: '4,200+', label: 'Issues Resolved' },
-                { stat: '98%', label: 'Satisfaction Rate' },
-                { stat: '24/7', label: 'Support Available' }
-              ].map((item, i) => (
-                <div key={i} className={`p-6 rounded-xl ${cardClass} transform hover:scale-105 transition-all`}>
-                  <div>
-                    <div className="text-2xl font-black" style={{color: colors.cmuRed}}>{item.stat}</div>
-                    <div className={`text-sm ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>{item.label}</div>
-                  </div>
+          {/* Stats Cards */}
+          <div className="space-y-4 mt-20">
+            {[
+              { stat: '4,200+', label: 'Issues Resolved' },
+              { stat: '98%', label: 'Satisfaction Rate' },
+              { stat: '24/7', label: 'Support Available' }
+            ].map((item, i) => (
+              <div key={i} className={`p-6 rounded-xl ${cardClass} transform hover:scale-105 transition-all`}>
+                <div>
+                  <div className="text-2xl font-black" style={{color: colors.cmuRed}}>{item.stat}</div>
+                  <div className={`text-sm ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>{item.label}</div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
 
@@ -230,6 +287,8 @@ const LandingPage = () => (
       </footer>
     </div>
   );
+};
+
 
   // Login Prompt
   const LoginPromptPage = () => (
